@@ -41,7 +41,7 @@ module ActiveJob
           job.enqueued_at = timestamp
 
           job.run_callbacks :enqueue do
-            queue_adapter.enqueue_at self, timestamp.to_f, job.job_id, *Arguments.serialize(args)
+            queue_adapter.enqueue_at self, Time.at(timestamp), job.job_id, *Arguments.serialize(args)
           end
         end
       end
